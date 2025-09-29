@@ -72,10 +72,10 @@ let
   copyKeys = pkgs.writers.writeBash "syncthing-copy-keys" ''
     ${install} -dm700 "${syncthing_dir}"
     ${lib.optionalString (cfg.cert != null) ''
-      ${install} -Dm400 ${toString cfg.cert} "${syncthing_dir}/cert.pem"
+      ${install} -Dm644 ${toString cfg.cert} "${syncthing_dir}/cert.pem"
     ''}
     ${lib.optionalString (cfg.key != null) ''
-      ${install} -Dm400 ${toString cfg.key} "${syncthing_dir}/key.pem"
+      ${install} -Dm600 ${toString cfg.key} "${syncthing_dir}/key.pem"
     ''}
   '';
 
